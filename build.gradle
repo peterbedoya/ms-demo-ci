@@ -2,7 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.5.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
-	id("maven-publish")
+	id 'maven-publish'
 }
 
 group = 'com.example'
@@ -34,9 +34,12 @@ publishing {
             }
         }
     }
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
+	publications {
+        register("jar", MavenPublication) {
+            from(components["java"])
+            pom {
+                url.set("https://github.com/<OWNER>/<REPO>.git")
+            }
         }
     }
 }
