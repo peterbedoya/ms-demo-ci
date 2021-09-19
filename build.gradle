@@ -34,12 +34,12 @@ publishing {
             }
         }
     }
-	publications {
-        register("jar", MavenPublication) {
-            from(components["java"])
-            pom {
-                url.set("https://github.com/<OWNER>/<REPO>.git")
-            }
-        }
-    }
+	publishing {
+	    publications {
+	        mavenJava(MavenPublication){
+	            // bootJar is the default build task configured by Spring Boot
+	            artifact bootJar
+	        }
+	    }
+	}
 }
